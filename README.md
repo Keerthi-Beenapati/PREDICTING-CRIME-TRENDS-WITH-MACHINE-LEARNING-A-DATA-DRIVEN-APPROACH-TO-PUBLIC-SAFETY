@@ -1,91 +1,68 @@
-# CrimeSight Advanced
+# CrimeSight – Predicting Crime Trends Using Machine Learning
 
-CrimeSight is a responsive, light-theme dashboard for exploring aggregate historical crime records. It includes interactive charts, two category classifiers (Random Forest and Extra Trees), an optional crime-rate regression estimate, downloadable CSV records, and JSON API endpoints.
+## 📌 Project Overview
 
-> **Responsible use:** This is an academic analytics prototype. The classifier estimates a category label found in the supplied dataset; it does not predict whether a crime will happen. A model score is not the probability of a crime. Do not use the output for policing, surveillance, individual risk scoring, or other high-impact decisions.
+CrimeSight is a machine learning-based crime data analytics application designed to analyze historical crime records and provide data-driven insights into crime patterns across different geographical locations and years.
 
-## Project structure
+The application uses machine learning algorithms to classify crime categories based on historical data, location, year, and population. It provides an interactive dashboard with visualizations, statistical summaries, and analytical results to help users explore historical crime trends and understand patterns in public safety data.
 
-```text
-CrimeSight_Advanced/
-├── app.py
-├── requirements.txt
-├── crime1_data.xlsx
-├── crime_data.csv
-├── templates/
-│   ├── index.html
-│   └── result.html
-├── tests/
-│   └── test_app.py
-├── run_windows.bat
-├── .gitignore
-└── README.md
-```
+## 🎯 Objectives
 
-## Requirements
+- Analyze historical crime datasets to identify patterns and trends.
+- Apply machine learning algorithms for crime category classification.
+- Explore crime distributions across different locations and years.
+- Visualize crime statistics through interactive charts and dashboards.
+- Provide data-driven insights to support research and public safety analysis.
 
-- Python 3.10–3.12 recommended
-- Internet connection during first install to download Python packages (the app itself uses the local dataset)
-- VS Code or another editor is optional
+## ✨ Key Features
 
-Python 3.13 may work with compatible package versions, but Python 3.12 is recommended for a predictable student setup.
+- **Interactive Dashboard:** Displays crime statistics, category distributions, and location-based insights.
+- **Crime Classification:** Uses Random Forest and Extra Trees algorithms to classify crime categories.
+- **Crime Rate Estimation:** Uses Random Forest Regression when sufficient crime-rate data is available.
+- **Historical Data Analysis:** Explores crime records based on location and year.
+- **Data Visualization:** Presents crime trends, category distributions, and geographical comparisons.
+- **Prediction Results:** Displays predicted categories and model confidence scores.
+- **CSV Download:** Allows users to download filtered crime records.
+- **JSON API:** Provides endpoints for accessing summary statistics and crime records.
 
-## Run on Windows
+## 🛠️ Technologies Used
 
-1. Extract the ZIP file.
-2. Open the extracted `CrimeSight_Advanced` folder in VS Code.
-3. Open a terminal in that folder.
-4. Create a virtual environment:
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Backend | Flask |
+| Machine Learning | Scikit-learn |
+| Data Processing | Pandas, NumPy |
+| Data Visualization | HTML, CSS, JavaScript |
+| Dataset Formats | CSV, Excel |
+| Algorithms | Random Forest, Extra Trees, Random Forest Regression |
 
-   ```powershell
-   py -3.12 -m venv .venv
-   ```
+## ⚙️ Machine Learning Methodology
 
-   If the Python launcher does not recognize `-3.12`, use `python -m venv .venv`.
+1. **Data Collection:** Load historical crime datasets from CSV or Excel files.
+2. **Data Preprocessing:** Clean missing values, normalize column names, and prepare input features.
+3. **Feature Selection:** Use year, location, and population as model input features.
+4. **Model Training:** Train Random Forest and Extra Trees classification models.
+5. **Model Evaluation:** Evaluate classification performance using accuracy and weighted F1-score.
+6. **Prediction:** Generate crime category estimates for the selected location and year.
+7. **Visualization:** Display analytical results through the dashboard.
 
-5. Activate it:
+## 🚀 Expected Outcome
 
-   ```powershell
-   .venv\Scripts\Activate.ps1
-   ```
+CrimeSight provides an interactive platform for exploring historical crime information and understanding data patterns. It demonstrates how machine learning and data visualization can be combined to support academic research and public safety analytics.
 
-   If PowerShell blocks activation, open Command Prompt and run `.venv\Scripts\activate.bat`.
+## 🔮 Future Enhancements
 
-6. Install dependencies:
+- Integrate larger and more diverse crime datasets.
+- Explore advanced machine learning and deep learning techniques.
+- Add interactive geographical crime visualizations.
+- Improve model evaluation using independent test datasets.
+- Introduce additional data filtering and reporting capabilities.
 
-   ```powershell
-   python -m pip install --upgrade pip
-   python -m pip install -r requirements.txt
-   ```
+## ⚠️ Responsible Use
 
-7. Start the server:
+This is an academic data analytics prototype. Its classification results describe categories present in historical records; they do not predict whether a crime will occur. Model outputs should not be used for individual risk assessment, surveillance, policing, or other high-impact decisions.
 
-   ```powershell
-   python app.py
-   ```
+## 👩‍💻 Project Domain
 
-8. Open `http://127.0.0.1:5000` in your browser. Keep the terminal open while using the app.
-
-Alternatively, double-click `run_windows.bat`; it creates a virtual environment if needed, installs dependencies, and launches the app.
-
-## API endpoints
-
-- `GET /` — dashboard
-- `POST /predict` — run category analysis using form fields `location` and `year`
-- `GET /api/summary` — dataset overview and category counts
-- `GET /api/records?location=Ahmedabad&year=2018&limit=100` — filtered JSON records (limit is capped at 500)
-- `GET /download?location=Ahmedabad&year=2018` — download filtered CSV; omit filters to download all cleaned rows
-- `GET /health` — application health status
-
-Example: open `http://127.0.0.1:5000/api/summary` after starting the app to check that the data loaded.
-
-## Dataset compatibility
-
-The application prefers `crime1_data.xlsx`, then falls back to `crime_data.csv`. It normalizes common header variants such as `City`/`Location`, `Crime Type`/`Type`, and population headers that include units (for example, `Population (in Lakhs) (2011)+`). The `Year`, location, and category fields are required; `Population` and `Crime Rate` are optional. Incomplete rows are excluded and counted in the dashboard.
-
-## Model notes
-
-- Random Forest and Extra Trees classify the supplied category labels from year, location, and population.
-- If enough numeric `Crime Rate` values exist, a separate Random Forest regressor estimates that field.
-- Accuracy and weighted F1 use a random hold-out split. These metrics are not a future-year benchmark; data leakage and dataset bias may affect them.
-- Requests outside the dataset's year range are extrapolations and should be treated cautiously.
+Machine Learning | Data Science | Crime Data Analytics | Public Safety
